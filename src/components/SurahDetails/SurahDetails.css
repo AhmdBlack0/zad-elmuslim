@@ -4,6 +4,12 @@
   padding: 30px;
 }
 
+@media(max-width: 767px) {
+  .surah-details {
+    padding: 0;
+  }
+}
+
 .surah-details-name {
   margin-top: 20px;
   font-size: 35px;

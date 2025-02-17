@@ -21,6 +21,14 @@ a {
   padding: 10px;
 }
 
+@media (max-width:767px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+  
+}
+
 body::-webkit-scrollbar {
   width: 10px;
 }
