@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eee;
+  direction: rtl;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #aaa;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #4B7C3D;
+  border-radius: 20px;
+}

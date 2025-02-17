@@ -1,0 +1,127 @@
+/* General Page Styling */
+.surah-details {
+  text-align: center;
+  padding: 30px;
+}
+
+.surah-details-name {
+  margin-top: 20px;
+  font-size: 35px;
+  color: #2E4A2C;
+  font-weight: bold;
+}
+
+/* Ayah Display */
+.details-container {
+  text-align: justify;
+  line-height: 2;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  overflow: auto;
+  direction: rtl;
+  font-family: 'Amiri', serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* Make Ayahs Inline */
+.details-container .ayah {
+  display: inline;
+  padding: 5px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.details-container .ayah:hover {
+  color: #2E4A2C;
+}
+
+/* Ayah Number */
+.ayah-number {
+  color: #2E4A2C;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+/* Font Size Controls */
+.font-size-settings {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.font-size-settings button {
+  background-color: #4B7C3D;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.font-size-settings button:hover {
+  background-color: #35692A;
+}
+
+/* Tafsir Selection Dropdown */
+.tafser-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2E4A2C;
+}
+
+.tafser-selection select {
+  background-color: #4B7C3D;
+  color: white;
+  font-size: 18px;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><path fill='white' d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
+}
+
+.tafser-selection select:hover {
+  background-color: #35692A;
+}
+
+.tafser-selection select:focus {
+  outline: 2px solid #228B22;
+}
+
+/* Loader */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}

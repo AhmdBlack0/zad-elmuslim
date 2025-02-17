@@ -1,0 +1,44 @@
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 30px;
+    font-size: 28px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.home .home-link {
+    width: 160px;
+    height: 80px;
+    background-color: #d32f2f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.home .home-link:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .home {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .home .home-link {
+        width: 140px;
+        height: 70px;
+        font-size: 24px;
+    }
+}
