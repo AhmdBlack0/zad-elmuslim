@@ -29,7 +29,6 @@ function Tafser({ surahNumber, ayahNumber, tafserType }) {
 
     return (
         <div className="tafser details-container">
-            <h3>تفسير {tafserType === "muyassar" ? "الميسر" : tafserType === "qurtubi" ? "القرطبي" : tafserType === "baghawi" ? "البغوي":""}</h3>
             <p>{tafser}</p>
         </div>
     );
