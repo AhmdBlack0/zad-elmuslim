@@ -6,6 +6,7 @@ function Home() {
             <Link className="home-link" to={'/quran'}>القرآن الكريم</Link>
             <Link className="home-link" to={'/hadeth'}>أحاديث</Link>
             <Link className="home-link" to={'/azkar'}>أذكار</Link>
+            <Link className="home-link" to={'/pray-times'}>مواقيت الصلاة</Link>
         </div>
     )
 }

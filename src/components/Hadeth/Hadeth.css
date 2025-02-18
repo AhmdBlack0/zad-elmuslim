@@ -1,4 +1,33 @@
-.hadeth {
-    font-size: 27px;
-    line-height: 1.6;
+/* Container for the whole page */
+.container.details-container {
+  max-width: 1200px;
+  height: 80vh; /* Adjustable height to fit screen */
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Enable vertical scroll when content overflows */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  scrollbar-width: thin; /* Firefox scrollbar */
+  scrollbar-color: #6c7b8b #f7f7f7; /* Firefox scrollbar colors */
+}
+
+/* Custom scrollbar for Chrome, Edge, and Safari */
+.container.details-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container.details-container::-webkit-scrollbar-track {
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+
+.container.details-container::-webkit-scrollbar-thumb {
+  background: #6c7b8b;
+  border-radius: 10px;
+}
+
+.container.details-container::-webkit-scrollbar-thumb:hover {
+  background: #4c5c6c;
 }

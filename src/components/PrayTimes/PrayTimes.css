@@ -1,0 +1,81 @@
+/* PrayTimes.css */
+.pray-time {
+    font-family: 'Arial', sans-serif;
+    background: #f0f4f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.custom-select {
+    background-color: #3b5998;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-select p {
+    margin: 0;
+}
+
+.custom-select .arrow {
+    font-size: 14px;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 109px;
+    background: #fff;
+    width: 360px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.pray-time-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    background-color: #3b5998;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: 20px;
+    color: white;
+}
+
+
+
+.icon {
+    font-size: 24px;
+    color: #ff9f00;
+}
+
+.pray-time-item:last-child {
+    margin-bottom: 0;
+}

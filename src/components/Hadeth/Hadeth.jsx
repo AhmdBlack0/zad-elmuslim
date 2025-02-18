@@ -2,76 +2,51 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import './Hadeth.css'
+import "./Hadeth.css";
 
 function Hadeth() {
-  const [hadeths, setHadeths] = useState([]); // تخزين الأحاديث
-  const [page, setPage] = useState(0); // تتبع الصفحة الحالية
-  const [loading, setLoading] = useState(false); // حالة التحميل
-  const [hasMore, setHasMore] = useState(true); // هل هناك المزيد؟
-  const lastElementRef = useRef(null); // مرجع لمراقبة آخر عنصر
+  const [hadiths, setHadiths] = useState([]);
+  const [page, setPage] = useState(0);
+  const observerRef = useRef(null);
 
-  useEffect(() => {
-    fetchHadiths(); // تحميل أول 100 حديث عند التشغيل
-  }, []);
-
-  useEffect(() => {
-    if (!loading || !hasMore) return;
-    fetchHadiths();
-  }, [loading]);
-
-  const fetchHadiths = () => {
-    axios
-      .get("https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-bukhari.json")
-      .then((response) => {
-        const start = page * 100;
-        const end = start + 100;
-        const newHadiths = response.data.hadiths.slice(start, end);
-
-        if (newHadiths.length === 0) {
-          setHasMore(false); // لا يوجد المزيد للتحميل
-        } else {
-          setHadeths((prevHadiths) => [...prevHadiths, ...newHadiths]);
-          setPage((prevPage) => prevPage + 1);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+  const fetchHadiths = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-bukhari.json`
+      );
+      setHadiths(data.hadiths.slice(0, (page + 1) * 100));
+      setPage((p) => p + 1);
+    } catch (error) {
+      console.error("Error fetching hadiths:", error);
+    }
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !loading && hasMore) {
-          setLoading(true);
-        }
-      },
-      { threshold: 1 }
-    );
+    fetchHadiths();
+  }, []);
 
-    if (lastElementRef.current) {
-      observer.observe(lastElementRef.current);
-    }
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) fetchHadiths();
+    });
 
+    if (observerRef.current) observer.observe(observerRef.current);
     return () => observer.disconnect();
-  }, [hadeths, loading, hasMore]);
+  }, [hadiths]);
 
   return (
     <div className="container details-container">
       <Swiper spaceBetween={50} slidesPerView={1}>
-        {hadeths.map((hadeth, index) => (
-          <SwiperSlide key={`${hadeth.hadithnumber}-${index}`}>
-            <div className="hadeth">
-                <p>{hadeth.hadithnumber}- {hadeth.text}</p>
-                <p>{hadeth.hadithnumber} من 7563</p>
+        {hadiths.map((h) => (
+          <SwiperSlide key={h.hadithnumber}>
+            <div className="hadith">
+              <p>{h.hadithnumber}- {h.text}</p>
+              <p>{h.hadithnumber} من 7563</p>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div ref={lastElementRef} style={{ height: 50, background: "transparent" }}></div>
+      <div ref={observerRef} style={{ height: 50 }}></div>
     </div>
   );
 }
