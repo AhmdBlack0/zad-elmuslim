@@ -1,4 +1,11 @@
-/* Surah Dropdown */
+.surah-details {
+  margin-top: 50px;
+}
+
+.surah-details-name {
+  text-align: center;
+}
+
 .surah-dropdown {
   margin: 20px 0;
   text-align: center;
@@ -86,9 +93,10 @@
 
 /* Tafsir Selection */
 .tafser-selection {
-  margin-top: 20px;
-  font-size: 20px;
+  margin-top: 40px;
+  font-size: 23px;
   font-weight: bold;
+  text-align: center;
 }
 
 .loader-container {
