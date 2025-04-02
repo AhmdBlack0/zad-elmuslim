@@ -15,6 +15,9 @@ function AllSurah() {
     })
     }, [])
 
+    // audio : https://api.alquran.cloud/v1/surah/${surahNumber}/ar.alafasy
+
+
 
     return (
         <div className="all-surah container">

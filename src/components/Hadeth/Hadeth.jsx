@@ -1,52 +1,58 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { useEffect, useState } from "react";
 import "./Hadeth.css";
+import { useParams } from "react-router-dom";
 
 function Hadeth() {
-  const [hadiths, setHadiths] = useState([]);
-  const [page, setPage] = useState(0);
-  const observerRef = useRef(null);
-
-  const fetchHadiths = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions/ara-bukhari.json`
-      );
-      setHadiths(data.hadiths.slice(0, (page + 1) * 100));
-      setPage((p) => p + 1);
-    } catch (error) {
-      console.error("Error fetching hadiths:", error);
-    }
-  };
-
+  const bookName = useParams().bookName
+  const [hadeth, setHadeth] = useState({ items: [] });
+  
   useEffect(() => {
-    fetchHadiths();
-  }, []);
+    axios
+      .get(`https://hadis-api-id.vercel.app/hadith/${(bookName).toLowerCase()}?page=1&limit=100`)
+      .then((response) => {
+        setHadeth(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [bookName]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) fetchHadiths();
-    });
+  const BookTitle = () => (
+    <h1 className="text-center text-2xl font-bold mb-4">
+      {hadeth.name === "Bukhari"
+        ? "صحيح البخاري"
+        : hadeth.name === "Muslim"
+        ? "صحيح مسلم"
+        : hadeth.name === "Tirmidzi" ?
+        "سنن الترمذي"
+        : hadeth.name === "Abu Dawood" ?
+        "سنن ابي داود"
+        : hadeth.name === "Nasai" ?
+        "سنن النسائي"
+        : hadeth.name === "Ibn Majah" ?
+        "سنن ابن ماجه"
+        : ""
+      }
+    </h1>
+  );
 
-    if (observerRef.current) observer.observe(observerRef.current);
-    return () => observer.disconnect();
-  }, [hadiths]);
+
 
   return (
-    <div className="container details-container">
-      <Swiper spaceBetween={50} slidesPerView={1}>
-        {hadiths.map((h) => (
-          <SwiperSlide key={h.hadithnumber}>
-            <div className="hadith">
-              <p>{h.hadithnumber}- {h.text}</p>
-              <p>{h.hadithnumber} من 7563</p>
+    <div className="hadeth-container">
+      <BookTitle />
+      <div>
+        {
+          hadeth.items.map((hadith, index) => (
+            <div key={index} className="hadeth-card">
+              <strong>{hadith.number} - </strong>
+              {hadith.arab}
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div ref={observerRef} style={{ height: 50 }}></div>
+          ))
+        }
+      </div>
+    
     </div>
   );
 }

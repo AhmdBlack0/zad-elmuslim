@@ -27,6 +27,7 @@ function Tafser({ surahNumber, ayahNumber, tafserType }) {
     if (error) return <p className="error">{error}</p>;
     if (!tafser) return null;
 
+
     return (
         <div className="tafser details-container">
             <p>{tafser}</p>
