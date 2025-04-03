@@ -1,113 +1,163 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
 .surah-details {
-  margin-top: 50px;
+    direction: rtl;
+    text-align: right;
+    position: relative;
 }
 
 .surah-details-name {
-  text-align: center;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4a6da7;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
-.surah-dropdown {
-  margin: 20px 0;
-  text-align: center;
+.surah-details-name::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #4a6da7;
+    border-radius: 2px;
 }
 
-.surah-dropdown label {
-  font-size: 20px;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.surah-dropdown select {
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  cursor: pointer;
-}
-
-.surah-dropdown select:focus {
-  outline: none;
-  border-color: #2E4A2C;
-}
-
-/* Font Size Buttons */
 .font-size-settings {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 15px 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .font-size-settings button {
-  background-color: #4B7C3D;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background 0.3s;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .font-size-settings button:hover {
-  background-color: #35692A;
+    background-color: #e9ecef;
 }
 
-/* Ayah Display */
 .details-container {
-  text-align: center;
-  line-height: 2;
-  width: 95%;
-  max-width: 1200px;
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-height: 500px;
-  overflow: auto;
-  direction: rtl;
-  font-family: 'Amiri', serif;
-  font-size: 30px;
-  font-weight: bold;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    line-height: 2;
 }
 
-.details-container .ayah {
-  display: inline;
-  padding: 5px;
-  cursor: pointer;
-  transition: color 0.2s;
+.ayah {
+    display: inline;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.details-container .ayah:hover {
-  color: #2E4A2C;
+.ayah:hover {
+    color: #4a6da7;
 }
 
 .ayah-number {
-  color: #2E4A2C;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 0 5px;
+    font-size: 0.7em;
+    vertical-align: super;
+    color: #6c757d;
+    margin: 0 4px;
+    font-weight: bold;
 }
 
-/* Tafsir Selection */
-.tafser-selection {
-  margin-top: 40px;
-  font-size: 23px;
-  font-weight: bold;
-  text-align: center;
+.surah-dropdown, .tafser-selection {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.surah-dropdown label, .tafser-selection label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.surah-dropdown select, .tafser-selection select {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    min-width: 150px;
 }
 
 .loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
 }
 
 .error {
-  color: red;
-  font-size: 20px;
-  text-align: center;
+    text-align: center;
+    color: #dc3545;
+    padding: 2rem;
+    background-color: #f8d7da;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 80%;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .surah-details-name {
+        font-size: 2rem;
+    }
+    
+    .details-container {
+        padding: 1.5rem;
+    }
+    
+    .font-size-settings {
+        top: 5px;
+        left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .surah-details-name {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .details-container {
+        padding: 1rem;
+    }
+    
+    .surah-dropdown, .tafser-selection {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .surah-dropdown select, .tafser-selection select {
+        width: 100%;
+    }
 }

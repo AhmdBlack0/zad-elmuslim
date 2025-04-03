@@ -1,43 +1,75 @@
 .all-surah {
-    margin: 50px auto;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 30px;
-    gap: 30px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .surah {
-    min-width: 200px;
-    height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: red;
+    padding: 1rem;
+    background-color: #fff;
     border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 14px 10px #0000000a, 0 6px 15px #00000005;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+}
+
+.surah:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
 }
 
 .surah-number {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: #4a6da7;
+    color: white;
+    border-radius: 50%;
+    margin-left: 12px;
+    font-weight: bold;
+}
+
+.surah p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.surah::before {
+    content: "";
     position: absolute;
-    clip-path: polygon(0 26%, 100% 0%, 100% 74%, 0% 100%);
-    right: -15px;
-    left: inherit;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .26);
-    color: var(--default_text_color);
-    color: #4B7C3D;
-    background-color: #d0dcc4;
-    border-radius: 4px;
-    font-size: 15px;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(74, 109, 167, 0.1);
+    border-radius: 0 0 0 15px;
+}
+
+@media (max-width: 768px) {
+    .all-surah {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 568px) {
+    .all-surah {
+        grid-template-columns: 1fr;
+    }
 }

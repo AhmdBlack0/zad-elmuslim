@@ -17,18 +17,20 @@ function SurahDetails() {
     const [fontSize, setFontSize] = useState(25);
     const [ayahTafser, setAyahTafser] = useState(null);
     const [tafserType, setTafserType] = useState("muyassar");
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const ayahsPerPage = 10;
 
-    // Fetch all Surahs
     useEffect(() => {
         axios.get("https://api.alquran.cloud/v1/surah")
             .then(response => setAllSurahs(response.data.data))
             .catch(() => setError("Failed to load Surahs list."));
     }, []);
 
-    // Fetch selected Surah details
     useEffect(() => {
         setLoading(true);
         setError(null);
+        setCurrentPage(1);
 
         axios.get(`https://api.alquran.cloud/v1/surah/${surahId}/ar`)
             .then(response => {
@@ -43,9 +45,28 @@ function SurahDetails() {
         setAyahTafser(ayahNumber);
     }, []);
 
-    // Navigate to selected Surah
     const handleSurahChange = (event) => {
         navigate(`/${event.target.value}`);
+    };
+
+    const indexOfLastAyah = currentPage * ayahsPerPage;
+    const indexOfFirstAyah = indexOfLastAyah - ayahsPerPage;
+    const currentAyahs = ayahs.slice(indexOfFirstAyah, indexOfLastAyah);
+    const totalPages = Math.ceil(ayahs.length / ayahsPerPage);
+
+
+    const nextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    };
+
+    const prevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
     };
 
     if (loading) return (
@@ -78,9 +99,9 @@ function SurahDetails() {
                 </select>
             </div>
 
-            {/* Ayah Display */}
+            {/* Ayah Display with Pagination */}
             <div className="details-container">
-                {ayahs.map((ayah) => (
+                {currentAyahs.map((ayah) => (
                     <span 
                         key={ayah.number} 
                         className="ayah" 
@@ -92,6 +113,26 @@ function SurahDetails() {
                     </span>
                 ))}
             </div>
+
+            {/* Pagination Controls */}
+            <div className="pagination-controls">
+                <button 
+                    onClick={prevPage} 
+                    disabled={currentPage === 1}
+                    className={`pagination-button ${currentPage === 1 ? 'disabled' : ''}`}
+                >
+                    الصفحة السابقة
+                </button>
+                
+                <button 
+                    onClick={nextPage} 
+                    disabled={currentPage === totalPages}
+                    className={`pagination-button ${currentPage === totalPages ? 'disabled' : ''}`}
+                >
+                    الصفحة التالية
+                </button>
+            </div>
+
 
             {/* Tafsir Selection */}
             <div className="tafser-selection">
